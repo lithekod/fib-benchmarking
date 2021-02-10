@@ -3,7 +3,7 @@
 script=script.py
 
 while read -r num; do
-    perl -ne "s/_val_/$num/g;print" $script > _script.py
+    sed "s/_val_/$num/g" $script > _script.py
 
     time=$(hyperfine 'python3 _script.py' -s basic \
         | cut -f 2 -d : \
